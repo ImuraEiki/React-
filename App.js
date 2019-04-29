@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './App.css'
 
 function SearchBar(){
     return(
@@ -10,10 +11,25 @@ function SearchBar(){
     )
 }
 
+function ProductCategoryRow(props){
+    return(
+        <p>{props.value}</p>
+    )
+}
+
+function ProductRow(props){
+    return(
+        <p>{props.value}</p>
+    )
+}
+
 class ProductTable extends React.Component{
     render(){
         return(
-            <div></div>
+            <div>
+                <ProductCategoryRow value="Sporting Goods"/>
+                <ProductRow value="Electronics" />
+            </div>
         )
     }
 }
