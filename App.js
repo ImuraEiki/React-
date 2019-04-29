@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './App.css'
+import list from './list'
 
 function SearchBar(){
     return(
@@ -18,9 +19,19 @@ function ProductCategoryRow(props){
 }
 
 function ProductRow(props){
+
+    const content = props.list.map((value) =>
+        <div key={value.id}>
+            <p>{value.name}</p>
+        </div>
+        );
+    
     return(
-        <p>{props.value}</p>
-    )
+        <div>
+            <p>{props.value}</p>
+            <p>{content}</p>
+        </div>
+    );
 }
 
 class ProductTable extends React.Component{
@@ -28,7 +39,7 @@ class ProductTable extends React.Component{
         return(
             <div>
                 <ProductCategoryRow value="Sporting Goods"/>
-                <ProductRow value="Electronics" />
+                <ProductRow value="Electronics" list={list}/>
             </div>
         )
     }
