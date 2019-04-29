@@ -1,60 +1,82 @@
 import React, {Component} from 'react'
 import './App.css'
-import list from './list'
 
-function SearchBar(){
-    return(
-        <form>
-            <label>
-                <input type="text" name="name" />
-            </label>
-        </form>
-    )
+
+class ProductCategoryRow extends React.Component{
+    render(){
+        const category = this.props.category;
+        return(
+           <tr>
+               <th colSpan="2">
+                    {category}
+               </th>
+           </tr>
+        )
+    }
 }
 
-function ProductCategoryRow(props){
-    return(
-        <p>{props.value}</p>
-    )
-}
+class ProductRow extends React.Component{
+    render(){
+        const product = this.props.product;
+        const name = product.stocked
 
-function ProductRow(props){
-
-    const content = props.list.map((value) =>
-        <div key={value.id}>
-            <p>{value.name}</p>
-        </div>
+        return(
+            <div>
+                <p>{props.value}</p>
+                <p>{content}</p>
+            </div>
         );
-    
-    return(
-        <div>
-            <p>{props.value}</p>
-            <p>{content}</p>
-        </div>
-    );
+    }
 }
 
 class ProductTable extends React.Component{
     render(){
         return(
             <div>
-                <ProductCategoryRow value="Sporting Goods"/>
-                <ProductRow value="Electronics" list={list}/>
+                <ProductCategoryRow value="Sporting Goods" value2="Electronics"/>
+                <ProductRow list={list}/>
             </div>
         )
     }
 }
 
+class SearchBar extends React.Component{
+    render(){
+        return(
+            <form>
+                <input type="text" placeholder="Search..." />
+                <p>
+                    <input type="checkbox"/>
+                    {' '}
+                    Only show products in stock
+                </p>
+            </form>
+        )
+    }
+}
+
+  
 
 class App extends React.Component{
     render(){
         return(
             <div className="App">
                 <SearchBar />
-                <ProductTable />
+                <ProductTable products={this.props.products}/>
             </div>
         )
     }
 }
+
+
+const PRODUCTS = [
+    {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
+    {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
+    {category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
+    {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
+    {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
+    {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
+  ];
+
 
 export default App

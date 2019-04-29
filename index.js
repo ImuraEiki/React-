@@ -5,5 +5,5 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import List from './List';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App products={PRODUCTS}/>, document.getElementById('root'));
 registerServiceWorker();
